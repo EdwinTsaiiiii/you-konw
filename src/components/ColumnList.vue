@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div v-for="column in list" :key="column.id" class="col-4 mb-4">
+    <div v-for="column in columnList" :key="column.id" class="col-4 mb-4">
       <div class="card h-100 shadow-sm">
         <div class="card-body text-center">
           <img
@@ -38,12 +38,18 @@ export default defineComponent({
     const columnList = computed(() => {
       return props.list.map((column) => {
         if (!column.avatar) {
-          column.avatar = new URL("./assets/column.jpg", import.meta.url).href;
+					/**
+					 * 2.11 这里无效
+					 * 2.11 已修补： v-for="column in columnList" 中 columnList写成list
+					 */
+          column.avatar = new URL("../assets/column.jpg", import.meta.url).href;
         }
         return column;
       });
     });
-    return columnList;
+    return {
+			columnList
+		};
   },
 });
 </script>
