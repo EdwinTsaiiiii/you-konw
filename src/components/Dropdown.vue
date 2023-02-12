@@ -5,7 +5,7 @@
       href="#"
       @click.prevent="toggleOpen()"
     >
-      Dropdown link
+      {{ title }}
     </a>
     <ul class="dropdown-menu" :style="{ display: 'block' }" v-if="isOpen">
       <slot></slot>
@@ -13,7 +13,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import useClickOutSide from "../hooks/useClickOutside";
 export default defineComponent({
   name: "Dropdown",

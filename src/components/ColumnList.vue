@@ -12,7 +12,12 @@
           <p class="card-text text-left">
             {{ column.description }}
           </p>
-          <a href="#" class="btn btn-outline-primary">进入专栏</a>
+          <router-link
+            :to="{ name: 'column', params: { id: column.id } }"
+            class="btn btn-outline-primary"
+          >
+            进入专栏
+          </router-link>
         </div>
       </div>
     </div>
@@ -38,18 +43,18 @@ export default defineComponent({
     const columnList = computed(() => {
       return props.list.map((column) => {
         if (!column.avatar) {
-					/**
-					 * 2.11 这里无效
-					 * 2.11 已修补： v-for="column in columnList" 中 columnList写成list
-					 */
+          /**
+           * 2.11 这里无效
+           * 2.11 已修补： v-for="column in columnList" 中 columnList写成list
+           */
           column.avatar = new URL("../assets/column.jpg", import.meta.url).href;
         }
         return column;
       });
     });
     return {
-			columnList
-		};
+      columnList,
+    };
   },
 });
 </script>
